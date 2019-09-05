@@ -4,10 +4,19 @@ import router from "./router";
 import store from "./store/store";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import {axios} from './api/axios';
+import Minilog from 'minilog';
 
 Vue.config.productionTip = false;
+if(process.env.NODE_ENV==="development"){
+  Minilog.enable()
+}else{
+  Minilog.disable()
+}
 
 Vue.use(Antd);
+Vue.prototype.$api=axios;
+Vue.prototype.$log=Minilog('app')
 
 new Vue({
   router,

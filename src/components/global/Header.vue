@@ -1,14 +1,8 @@
 <template>
     <div class="header">
-        <a-menu v-model='curTab' mode="horizontal">
-              <a-menu-item key='tool'>
-                  百宝袋
-              </a-menu-item>
-              <a-menu-item key='football'>
-                  足球
-              </a-menu-item>
-              <a-menu-item key='oneWord'>
-                  一言
+        <a-menu v-model='curTab' mode="horizontal" @select="changeMenu">
+              <a-menu-item v-for="item in menu" :key="item.key">
+                  {{item.name}}
               </a-menu-item>
           </a-menu>
     </div>
@@ -16,10 +10,46 @@
 
 <script>
 export default {
-    name:'header',
+    name:'HeaderMenu',
     data(){
         return {
-            curTab:['oneWord']
+            curTab:['oneWord'],
+            menu:[
+                {
+                    key:'tool',
+                    name:'百宝袋'
+                },
+                {
+                    key:'football',
+                    name:'足球'
+                },
+                {
+                    key:'oneWord',
+                    name:'一言'
+                }
+            ]
+        }
+    },
+    methods:{
+        changeMenu(item){
+            let length=this.menu.length
+            switch(item.key){
+                case this.menu[0].key:{
+                    this.$router.push({path:`/${this.menu[0].key}`})
+                    break
+                }
+                case this.menu[1].key:{
+                    this.$router.push({path:`/${this.menu[1].key}`})
+                    break
+                }
+                case this.menu[length-1].key:{
+                    this.$router.push({path:`/`})
+                    break
+                }
+                default:{
+                    this.$router.push({path:`/`})
+                }
+            }
         }
     }
 }
@@ -28,7 +58,7 @@ export default {
 <style lang="scss">
 @import '~style/global.scss';
     .header{
-        /deep/ .ant-menu{
+        .ant-menu{
             line-height: $index-header-height;
             background-color: $theme-color;
             padding: 0 10vw;
@@ -39,7 +69,7 @@ export default {
                 background-color: $header-menu-selected-color;
             }
         }
-        /deep/ .ant-menu-horizontal{
+        .ant-menu-horizontal{
             border-bottom: none;
             display: flex;
             flex-direction: row-reverse;

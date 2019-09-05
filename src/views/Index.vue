@@ -8,7 +8,14 @@
 
 export default {
     name:"Index",
+    data(){
+        return {
 
+        }
+    },
+    mounted(){
+        
+    }
 }
 </script>
 
