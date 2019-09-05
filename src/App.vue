@@ -2,17 +2,7 @@
   <div id="app">
     <a-layout>
       <a-layout-header>
-          <a-menu v-model='curTab' mode="horizontal" :style="{width:'100vw',height:'10vh',lineHeight:'10vh'}">
-              <a-menu-item key='tool'>
-                  百宝袋
-              </a-menu-item>
-              <a-menu-item key='football'>
-                  足球
-              </a-menu-item>
-              <a-menu-item key='oneWord'>
-                  一言
-              </a-menu-item>
-          </a-menu>
+          <header-menu></header-menu>
       </a-layout-header>
       <a-layout-content>
         <router-view />
@@ -27,13 +17,11 @@
 </template>
 
 <script>
-
+import HeaderMenu from './components/global/Header'
 export default {
     name:'App',
-    data(){
-        return {
-            curTab:['oneWord']
-        }
+    components:{
+      HeaderMenu
     }
 }
 
@@ -41,24 +29,24 @@ export default {
 
 <style lang="scss" scoped>
 @import '~style/global.scss';
-  /deep/ .ant-layout-header{
-    background: $theme-color;
-    padding: 0px;
-    height: 10vh;
-    .ant-menu{
-        background-color: $theme-color;
-        padding: 0 10vw;
-        color: $header-menu-color;
-        .ant-menu-item-selected,.ant-menu-item-active{
-            border-bottom: 2px solid $header-menu-color;
-            color: $header-menu-color;
-            background-color: $header-menu-selected-color;
-        }
+  .ant-layout{
+    .ant-layout-header{
+      background: $theme-color;
+      padding: 0px;
+      width: 100%;
+      line-height: $index-header-height;
+      height: $index-header-height;
+      position: fixed;
+      z-index: 2;
     }
-    .ant-menu-horizontal{
-        border-bottom: none;
-        display: flex;
-        flex-direction: row-reverse;
+    .ant-layout-content{
+      margin-top: $index-header-height;
+      height: $index-content-height;
+    }
+    .ant-layout-footer{
+      height: $index-footer-height;
+      padding: 0px;
     }
   }
+  
 </style>
