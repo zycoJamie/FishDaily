@@ -41,7 +41,7 @@ axios.interceptors.response.use(function(res){
 
 //封装get
 let axiosGet=axios.get
-axios.get=function(url,data){
+axios.get=function(url,data={}){
     log.debug('wrapper get')
     return axiosGet(url,{
         params:data
@@ -49,7 +49,7 @@ axios.get=function(url,data){
 }
 //封装post
 let axiosPost=axios.post
-axios.post=function(url,data){
+axios.post=function(url,data={}){
     log.debug('wrapper post')
     return axiosPost(url,data)
 }
