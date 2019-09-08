@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+//import Daily from './views/Daily.vue'
 
 
 Vue.use(Router);
@@ -14,9 +15,9 @@ export default new Router({
       component: ()=> import ('./views/Index.vue')
     },
     {
-      path: "/football",
-      name: "football",
-      component: ()=> import ('./views/Football.vue')
+      path: "/daily",
+      name: "daily",
+      component: ()=> import ('./views/Daily.vue')
     },
     {
       path: "/tool",
