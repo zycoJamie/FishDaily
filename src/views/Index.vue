@@ -14,9 +14,12 @@
                     </a-card-meta>
                 </a-card>
             </div>
-            <div class="button-area" @click="refresh">
-                <div style="display:inline-block;width:50%">
+            <div class="button-area">
+                <div @click="refresh" style="display:inline-block;width:50%">
                     <i class="iconfont change">&#xe66a;</i>
+                </div>
+                <div @click="share" style="display:inline-block;width:50%">
+                    <i class="iconfont share">&#xe778;</i>
                 </div>
             </div>
         </div>
@@ -68,6 +71,9 @@ export default {
                 .catch(err=>{
                     this.$log.debug('请求一言异常')
                 })
+                .finally(()=>{
+                    document.querySelector('.button-area .change').classList.remove('click-rotate')
+                })
         },
         scale(){
             this.$log.debug('touch start')
@@ -88,8 +94,25 @@ export default {
             this.debounce=setTimeout(() => {
                 this.getOneWord()
                 this.debounce=null
-                document.querySelector('.button-area .change').classList.remove('click-rotate')
             },1000);
+        },
+        share(){
+            document.querySelector('.button-area .share').classList.add('rubberBand')
+            this.clipToBoard(this.oneWord+' from '+this.from)
+            setTimeout(() => {
+                document.querySelector('.button-area .share').classList.remove('rubberBand')
+            }, 2000);
+        },
+        clipToBoard(text){
+            let input=document.createElement('input')
+            input.value=text
+            input.setAttribute('id','clipText')
+            document.documentElement.appendChild(input)
+            let dom=document.querySelector('#clipText')
+            dom.select()
+            document.execCommand('Copy')
+            document.documentElement.removeChild(dom)
+            this.$message.success('已经复制到剪贴板了，快去分享给朋友们吧~~~')
         }
     }
 }
@@ -139,6 +162,15 @@ $card-min-height:10rem;
                 font-size: 5vh;
                 color: $theme-color;
             }
+            .share{
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 5vh;
+                color: $theme-color;
+                animation-duration: 2s;
+                animation-iteration-count: 1;
+            }
         }
     }
     
@@ -148,9 +180,17 @@ $card-min-height:10rem;
     }
     
     .click-rotate{
-        transform: rotateZ(360deg);
+        animation: spin 1s linear infinite;
         transform-origin: center;
-        transition: all 1s linear;
+    }
+
+    @keyframes spin{
+        0%{
+            transform: rotateZ(0deg)
+        }
+        100%{
+            transform: rotateZ(360deg)
+        }
     }
     
 </style>

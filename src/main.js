@@ -6,6 +6,7 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import {axios} from './api/axios';
 import Minilog from 'minilog';
+import '../public/static/style/animate.css';
 
 Vue.config.productionTip = false;
 if(process.env.NODE_ENV==="development"){
