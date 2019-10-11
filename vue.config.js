@@ -10,6 +10,14 @@ module.exports={
     },
     devServer:{
         open:true,
-        port:8000
+        port:8000,
+        proxy:{
+            '/gank':{
+                target:'http://gank.io',
+                pathRewrite:{
+                    "^/gank":""
+                }
+            }
+        }
     }
 }

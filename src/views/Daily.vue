@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import Service from '../api/service'
 export default {
     name:'Daily',
     data(){
@@ -30,7 +31,15 @@ export default {
         }
     },
     mounted(){
-        
+        this.getCategory()
+    },
+    methods:{
+        getCategory(){
+            Service.getDailyCategory()
+                .then(res=>{
+                    this.$log.debug(res)
+                })
+        }
     }
 }    
 </script>

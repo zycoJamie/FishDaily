@@ -29,6 +29,7 @@
 
 <script>
 import imgList from '../../public/static/json/imgList.json'
+import Service from '../api/service'
 export default {
     name:"Index",
     data(){
@@ -41,9 +42,6 @@ export default {
                 backgroundAttachment:'fixed',
                 backgroundPosition:'center'
             },
-            bgList:[
-                'https://s2.ax1x.com/2019/09/05/nnkmq0.jpg'
-            ],
             oneWord:'皮卡丘',
             from:'宝可梦',
             debounce:''
@@ -51,7 +49,7 @@ export default {
     },
     computed:{
         backgroundObj(){
-            this.background['backgroundImage']=`url(${this.bgList[0]})`
+            this.background['backgroundImage']=`url(${imgList.bgList[0]})`
             return this.background
         },
         cardImg(){
@@ -59,11 +57,11 @@ export default {
         }
     },
     mounted(){
-        this.getOneWord()
+        //this.getOneWord()
     },
     methods:{
         getOneWord(){
-            this.$api.get('https://v1.hitokoto.cn/')
+            Service.getOneWord()
                 .then(res=>{
                     this.oneWord=res.data.hitokoto
                     this.from=res.data.from
