@@ -12,10 +12,10 @@ module.exports={
         open:true,
         port:8000,
         proxy:{
-            '/gank':{
-                target:'http://gank.io',
+            '/zyco':{
+                target:'http://news-at.zhihu.com',
                 pathRewrite:{
-                    "^/gank":""
+                    "^/zyco":""
                 }
             }
         }
