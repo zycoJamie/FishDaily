@@ -19,6 +19,21 @@ Vue.use(Antd);
 Vue.prototype.$api=axios;
 Vue.prototype.$log=Minilog('app')
 
+Vue.mixin({
+  methods: {
+    loadCssAndJs(cssUrl,jsUrl){
+      const headDom=document.querySelector('head')
+      const linkDom=document.createElement('link')
+      linkDom.rel='stylesheet'
+      linkDom.href=cssUrl
+      const scriptDom=document.createElement('script')
+      scriptDom.src=jsUrl
+      headDom.appendChild(linkDom)
+      headDom.appendChild(scriptDom)
+    }
+  }
+})
+
 new Vue({
   router,
   store,

@@ -96,7 +96,8 @@ export default {
                 })
         },
         watchDetail(target){
-            window.location.assign(target.url)
+            //window.location.assign(target.url)
+            this.$router.push({path:`/zhuHuDailyDetail/${target.id}`})
         }
     }
 }    

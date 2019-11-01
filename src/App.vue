@@ -41,7 +41,7 @@ export default {
     }
     .ant-layout-content{
       margin-top: $index-header-height;
-      height: $index-content-height;
+      min-height: $index-content-height;
     }
     .ant-layout-footer{
       height: $index-footer-height;

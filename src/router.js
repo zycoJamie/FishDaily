@@ -23,6 +23,11 @@ export default new Router({
       path: "/tool",
       name: "tool",
       component: ()=> import ('./views/Tool.vue')
+    },
+    {
+      path: "/zhuHuDailyDetail/:id",
+      name: "zhuHuDailyDetail",
+      component: ()=> import ('./components/daily/ZhiHuDailyDetail.vue')
     }
   ]
 });

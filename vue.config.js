@@ -12,10 +12,10 @@ module.exports={
         open:true,
         port:8000,
         proxy:{
-            '/zyco':{
+            '/zhihu':{
                 target:'http://news-at.zhihu.com',
                 pathRewrite:{
-                    "^/zyco":""
+                    "^/zhihu":""
                 }
             }
         }
