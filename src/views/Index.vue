@@ -35,12 +35,13 @@ export default {
     data(){
         return {
             background:{
-                height:'100%',
+                height:'95vh',
                 width:'100%',
                 backgroundImage:'',
                 backgroundRepeat:'no-repeat',
                 backgroundAttachment:'fixed',
-                backgroundPosition:'center'
+                backgroundPosition:'center',
+                backgroundSize:'cover'
             },
             oneWord:'皮卡丘',
             from:'宝可梦',

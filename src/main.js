@@ -30,6 +30,12 @@ Vue.mixin({
       scriptDom.src=jsUrl
       headDom.appendChild(linkDom)
       headDom.appendChild(scriptDom)
+      return {linkDom,scriptDom}
+    },
+    removeCssAndJs({linkDom,scriptDom}){
+      const headDom=document.querySelector('head')
+      headDom.removeChild(linkDom)
+      headDom.removeChild(scriptDom)
     }
   }
 })

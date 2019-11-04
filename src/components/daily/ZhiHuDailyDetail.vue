@@ -13,13 +13,17 @@ export default {
     data(){
         return {
             newsId:0,
-            content:'<p style="text-align:center">数据被弄丢啦555~</p>'
+            content:'<p style="text-align:center">数据被弄丢啦555~</p>',
+            outerStyleAndJs:null
         }
     },
     mounted(){
         this.$nextTick(()=>{
             this.init()
         })
+    },
+    beforeDestroy(){
+        this.removeCssAndJs(this.outerStyleAndJs)
     },
     methods:{
         init(){
@@ -31,7 +35,7 @@ export default {
                 let response=res.data || {}
                 if(response.body){
                     this.content=response.body
-                    this.loadCssAndJs(response.css[0],response.js[0])
+                    this.outerStyleAndJs=this.loadCssAndJs(response.css[0],response.js[0])
                 }
             }).catch(err=>{
                 this.$log.error(err)
@@ -42,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 @import '~style/global.scss';
 .zhihu-daily-detail{
     .content{
