@@ -36,10 +36,26 @@ export default {
                 if(response.body){
                     this.content=response.body
                     this.outerStyleAndJs=this.loadCssAndJs(response.css[0],response.js[0])
+                    this.$nextTick(()=>{
+                        const metaDom=document.querySelector('.meta')
+                        const coverDom=document.querySelector('.img-place-holder')
+                        const avatarDom=document.querySelector('.meta .avatar')
+                        const bioDom=document.querySelector('.meta .bio') //作者简介
+                        
+                        coverDom.style.cssText="height:auto;"
+                        const imgDom=document.createElement('img')
+                        imgDom.src=response.image
+                        coverDom.appendChild(imgDom)
+
+                        avatarDom.style.cssText="margin:0px;display:inline;"
+                        metaDom.style.cssText="white-space:normal;background:rgba(0,0,0,0.1);border-radius:10px;padding:10px;"
+                        bioDom.style.cssText="display:block;"
+                    })
                 }
             }).catch(err=>{
                 this.$log.error(err)
             })
+            
         },
         
     }

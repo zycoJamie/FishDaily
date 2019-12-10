@@ -4,7 +4,7 @@
               <a-menu-item v-for="item in menu" :key="item.key">
                   {{item.name}}
               </a-menu-item>
-          </a-menu>
+        </a-menu>
     </div>
 </template>
 
@@ -63,7 +63,6 @@ export default {
              * 1.因为按需加载组件，所以组件外部获取路由信息的时候对应组件并未加载进来，所以路由信息始终是'/'
              * 2.而在路由加载的对应组件内部，能获取到正确的this.route路由信息
              */
-
             switch(window.location.pathname){
                 case '/'+this.menu[0].key:{
                     tab[0]=this.menu[0].key
@@ -78,7 +77,11 @@ export default {
                     break
                 }
                 default:{
-                    tab[0]='oneWord'
+                    if(/zhuHuDailyDetail/i.test(window.location.pathname)){
+                        tab[0]='daily'
+                    }else{
+                        tab[0]='oneWord'
+                    }
                 }
             }
             this.curTab=tab
