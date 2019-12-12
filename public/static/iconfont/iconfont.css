@@ -1,10 +1,11 @@
-@font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1567915217320'); /* IE9 */
-  src: url('iconfont.eot?t=1567915217320#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOYAAsAAAAAB/wAAANMAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDWIMTATYCJAMMCwgABCAFhG0HQxvmBhHVm4HIfiZkch7WB7MaIXDL5EXbjdWwp4lv4uG//X6/z8y8i7gmj746STSSSN1bh0TohOKhwZef16ven8xKKtUpC7qiMguxslBdewmAzc36ahkVoViS8+B/+Y6kkxXCj4PDpU3xeVbbZY7JYRTHAcVjboqof5AX9P+ADd3PaQKNRqlC+0bm9lCvMCcF4jokyAfqMzqloTjUC1XFygJxCzX1KZeyDdwEvx/fsBKMIKllMGceXBn6w/Zb6FscRpCEcw8B/Oks4NeRsQwU4rLSdixHsWWYRlVWmrMrRUhTBUky4GmSyvqHRxJEBWZhM5ineOIt1CGTeI8TXDX/4b6vUI8b4GWCs6mkBiZWdSbEqhY5NkebzZsmZlzyw4cTjp/tT14czt6cTl/9GxQd6veaRg5GGvbXRg9HaQKO7SxT89HmiJJTFeJVZ+btDtp3OA735Y5R65Eo3uBxfGx/eup4duaUf7KAaF35HeCxnZk5rzPxsLBMGtXtfnLisHYmU93WUjv0Nf4fJ/E//FcmVYbEEfFbzoTxXFAlJcuFpZGUdEW098QP1azP+kpK6nmbjXV7fn+blVV4wmEsTEKw0YeNjbszMLJu7yNZ+8kYzvQ4moWqS/4znrAFxr/F2iCZCWlG+0zHIRHqhPwpWVkUf4vtsd15CrjAqySHtNhKW4IYZ2ts1GOqTXnWG0fe3gg1uDeed+9mvqPmtfIC2+A/URBG/MK/8VUaqOXFofePkYUK8FrXeBAIuuVTL9GZ/8MyCgJ4Qk2I+lyqDErXuOzQT4kkNFou/qOr0+1wVc9LsYT6DJ+HpM4IZPWmkQW7DDVN1qBSbwsaLcHXN+kSIYvCBCzKBAjt+iBp9QRZux1kwd5ATa8fqLQHBo0Og2fHJrNBx5s+oxZ0YP4Q7TKTbZRbWHxHfxTNaWGAeyPvMQht1eSTI87IU8zZP74TISBeJhjgPCxlgZWXhFaqILL2dU1VH6rsMqmb0mfUgg7MH6JdZvLqy63w83f0R9HcUFFlfSPvsXloq6YDcpTNnSpu5Z394zsRAuJlggEsWKzYAmv1sIRWqjAgsvY1VaOusmp5xfR+G6BRmXPzKUWOgmM7ZsLZOz1+Uc/+HBkOHVlnpQA=') format('woff2'),
-  url('iconfont.woff?t=1567915217320') format('woff'),
-  url('iconfont.ttf?t=1567915217320') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont.svg?t=1567915217320#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.eot');
+  src: url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1395251_4nrokiulu0m.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -14,12 +15,3 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.iconqunfengfenxiang:before {
-  content: "\e778";
-}
-
-.iconshuaxin:before {
-  content: "\e66a";
-}
-
