@@ -79,6 +79,8 @@ export default {
                 default:{
                     if(/zhuHuDailyDetail/i.test(window.location.pathname)){
                         tab[0]='daily'
+                    }else if(/planeGame/i.test(window.location.pathname)){
+                        tab[0]='tool'
                     }else{
                         tab[0]='oneWord'
                     }

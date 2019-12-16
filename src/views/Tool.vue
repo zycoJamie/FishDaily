@@ -3,7 +3,7 @@
         <div class="col-4">
             <a-row :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
                 <a-col :span="6">
-                    <a-card :bordered="true" hoverable class="card">
+                    <a-card :bordered="true" hoverable class="card" @click="goToPages('PlaneGame')">
                         <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
                         <p :style="{textAlign:'center'}">飞机大战</p>
                     </a-card>
@@ -50,7 +50,15 @@
 
 <script>
 export default{
-    name:'Tool'
+    name:'Tool',
+    methods:{
+        goToPages(pageName){
+            const category={
+                "PlaneGame":"/planeGame"
+            }
+            this.$router.push({path:category[pageName]})
+        }
+    }
 }
 </script>
 

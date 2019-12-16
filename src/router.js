@@ -28,6 +28,11 @@ export default new Router({
       path: "/zhuHuDailyDetail/:id",
       name: "zhuHuDailyDetail",
       component: ()=> import ('./components/daily/ZhiHuDailyDetail.vue')
-    }
+    },
+    {
+      path: "/planeGame",
+      name: "PlaneGame",
+      component: ()=> import ('./components/tool/PlaneGame.vue')
+    },
   ]
 });
