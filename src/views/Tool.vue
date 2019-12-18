@@ -8,36 +8,12 @@
                         <p :style="{textAlign:'center'}">飞机大战</p>
                     </a-card>
                 </a-col>
-                <a-col :span="6">
-                    <a-card :bordered="true" hoverable class="card">
-                        <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
-                        <p :style="{textAlign:'center'}">飞机大战</p>
-                    </a-card>
-                </a-col>
-                <a-col :span="6">
-                    <a-card :bordered="true" hoverable class="card">
-                        <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
-                        <p :style="{textAlign:'center'}">飞机大战</p>
-                    </a-card>
-                </a-col>
-                <a-col :span="6">
-                    <a-card :bordered="true" hoverable class="card">
-                        <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
-                        <p :style="{textAlign:'center'}">飞机大战</p>
-                    </a-card>
-                </a-col>
                 
             </a-row>
         </div>
         <div class="col-2">
             <a-row :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
-                <a-col :span="12">
-                    <a-card :bordered="true" hoverable class="card">
-                        <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
-                        <p :style="{textAlign:'center'}">飞机大战</p>
-                    </a-card>
-                </a-col>
-                <a-col :span="12">
+                <a-col :span="12"  @touchend="tips">
                     <a-card :bordered="true" hoverable class="card">
                         <div :style="{textAlign:'center'}"><i class="iconfont">&#xe859;</i></div>
                         <p :style="{textAlign:'center'}">飞机大战</p>
@@ -57,6 +33,10 @@ export default{
                 "PlaneGame":"/planeGame"
             }
             this.$router.push({path:category[pageName]})
+        },
+        tips(){
+            this.$log.debug('tips~~')
+            this.$message.info('请在PC端体验游戏~')
         }
     }
 }

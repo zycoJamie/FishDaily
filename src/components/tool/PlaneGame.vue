@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { drawText } from '../../utils/helper'
 import PlaneImage from '../../assets/img/plane.png'
 import StarImage from '../../assets/img/star.png'
 import AlienImage from '../../assets/img/alien.png'
@@ -27,6 +28,7 @@ export default {
             plane: null,
             stars: [],
             aliens: [],
+            timer: null,
         }
     },
     mounted(){
@@ -35,6 +37,11 @@ export default {
             this.drawWelcome()
             this.runTime()
         })
+    },
+    beforeDestroy(){
+        if(this.timer){
+            clearInterval(this.timer)
+        }
     },
     methods:{
         //初始化canvas
@@ -55,12 +62,28 @@ export default {
                 this.$log.debug(this.stars)
                 if(this.state===this.stateList['start']){
                     this.state=this.stateList['running']
+                    return
+                }
+                if(this.state===this.stateList['over']){
+                    this.state=this.stateList['start']
                 }
             })
 
             this.$refs['stage'].addEventListener('mousemove',(e)=>{
                 if(this.state===this.stateList['running']){
                     this.plane.move(e.offsetX-this.plane.width/2,e.offsetY-this.plane.height/2)
+                }
+            })
+
+            this.$refs['stage'].addEventListener('mouseleave',(e)=>{
+                if(this.state===this.stateList['running']){
+                    this.state=this.stateList['pause']
+                }
+            })
+
+            this.$refs['stage'].addEventListener('mouseenter',(e)=>{
+                if(this.state===this.stateList['pause']){
+                    this.state=this.stateList['running']
                 }
             })
             
@@ -76,7 +99,7 @@ export default {
             //You can get a very close approximation of the vertical height by checking the length of a capital M.
             const txtHeight=this.context.measureText('M').width
             this.context.fillText('飞机大战',this.stageWidth/2-txtWidth/2,this.stageHeight/2-txtHeight/2)
-            // this.$log.debug('drawWelcome',this.stageWidth/2-txtWidth/2,this.stageHeight/2-txtHeight/2)
+            drawText(this.context,`规则: 1.拾取星星+1分 2.没有拾取的星星-5分 3.当分数扣至0分及以下，将会扣除生命值 4.碰撞到外星人生命值-1 5.生命值===0时，结束游戏 6.活到最后吧，骚年!!!`,10,0,20)
         },
         runTime(){
             this.createPlane() //创建玩家飞机
@@ -84,9 +107,10 @@ export default {
             starImg.src=StarImage
             let alienImg=new Image()
             alienImg.src=AlienImage
-            setInterval(()=>{
+            this.timer=setInterval(()=>{
                 switch(this.state){
                     case this.stateList['start']:{
+                        this.resetData()
                         this.drawWelcome()
                         break
                     }
@@ -105,8 +129,12 @@ export default {
                         this.crashCheck()
                         break
                     }
+                    case this.stateList['pause']:{
+                        break
+                    }
                     case this.stateList['over']:{
-
+                        this.drawGameOver()
+                        this.drawScore()
                         break
                     }
                 }
@@ -143,6 +171,7 @@ export default {
         //绘制计分板
         drawScore(){
             this.context.font="15px serif"
+            this.context.clearRect(this.stageWidth-this.context.measureText(`SCORE:${this.score}`).width-25,20-this.context.measureText('M').width*2,this.context.measureText(`SCORE:${this.score}`).width,this.context.measureText('M').width*5)
             this.context.fillText(`SCORE:${this.score}`,this.stageWidth-this.context.measureText(`SCORE:${this.score}`).width-25,20)
             this.context.fillText(`生命:${this.life}`,this.stageWidth-this.context.measureText(`生命:${this.life}`).width-25,40)
         },
@@ -239,12 +268,14 @@ export default {
             this.score-=5
             if(this.score<=0){
                 this.subLife()
+                this.score=0
             }
         },
         //减生命值
         subLife(){
             this.life--
-            if(this.life===0){
+            if(this.life<=0){
+                this.life=0
                 this.state=this.stateList['over']
             }
         },
@@ -302,6 +333,20 @@ export default {
                 }
             })
         },
+        //绘制游戏结束
+        drawGameOver(){
+            this.context.font="italic bold 50px 微软雅黑"
+            const txtWidth=this.context.measureText('你GG了~').width
+            const txtHeight=this.context.measureText('M').width
+            this.context.fillText('你GG了~',this.stageWidth/2-txtWidth/2,this.stageHeight/2-txtHeight/2)
+        },
+        //重置游戏数据
+        resetData(){
+            this.score=0
+            this.life=3
+            this.stars=[]
+            this.aliens=[]
+        }
     }
 }
 </script>

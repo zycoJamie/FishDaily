@@ -35,7 +35,7 @@ export default {
     data(){
         return {
             background:{
-                height:'95vh',
+                height:'100vh',
                 width:'100%',
                 backgroundImage:'',
                 backgroundRepeat:'no-repeat',
@@ -45,7 +45,8 @@ export default {
             },
             oneWord:'皮卡丘',
             from:'宝可梦',
-            debounce:''
+            debounce:'',
+            cardImgIndex:Math.floor(Math.random()*(imgList.oneWord.length-1))
         }
     },
     computed:{
@@ -53,12 +54,17 @@ export default {
             this.background['backgroundImage']=`url(${imgList.bgList[0]})`
             return this.background
         },
-        cardImg(){
-            return imgList.oneWord[0]
+        cardImg:{
+            set:function(idx){
+                this.cardImgIndex=idx
+            },
+            get:function(){
+                return imgList.oneWord[this.cardImgIndex]
+            }
         }
     },
     mounted(){
-        //this.getOneWord()
+        this.getOneWord()
     },
     methods:{
         getOneWord(){
@@ -93,6 +99,7 @@ export default {
             this.debounce=setTimeout(() => {
                 this.getOneWord()
                 this.debounce=null
+                this.cardImg=Math.floor(Math.random()*(imgList.oneWord.length-1))
             },1000);
         },
         share(){
